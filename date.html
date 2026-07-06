@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>August 1st?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+        .icon {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+            min-height: 50px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        #yes-btn {
+            background-color: #2eccc1;
+            color: white;
+            box-shadow: 0 4px 15px rgba(46, 204, 193, 0.3);
+        }
+        #yes-btn:hover {
+            background-color: #25a89e;
+            transform: translateY(-2px);
+        }
+        #no-btn {
+            background-color: #ff6b6b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        #response-message {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ff6b6b;
+            min-height: 25px;
+        }
+        .success-text {
+            color: #2eccc1 !important;
+            font-size: 1.3rem !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card" id="main-card">
+    <div class="icon" id="header-icon">🍿🎬</div>
+    
+    <h1 id="question-text">Would you do me the honor of going on a movie date with me on August 1st?</h1>
+    
+    <div class="buttons" id="button-group">
+        <button id="yes-btn">Yes!</button>
+        <button id="no-btn">No</button>
+    </div>
+
+    <div id="response-message"></div>
+</div>
+
+<script>
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+    const responseMessage = document.getElementById('response-message');
+    const questionText = document.getElementById('question-text');
+    const buttonGroup = document.getElementById('button-group');
+    const headerIcon = document.getElementById('header-icon');
+
+    // Variable to track how much the 'No' button shrinks
+    let noScale = 1;
+
+    noBtn.addEventListener('click', function() {
+        // Display the required message and emoji
+        responseMessage.innerText = "😭 Only yes is available at this time";
+        
+        // Make the button slightly smaller each time she clicks 'No'
+        if (noScale > 0.2) {
+            noScale -= 0.2;
+            noBtn.style.transform = `scale(${noScale})`;
+        }
+        
+        // Increase the size of the 'Yes' button slightly to encourage her
+        let currentYesScale = yesBtn.style.transform.match(/scale\(([0-9.]+)\)/);
+        let yesScaleValue = currentYesScale ? parseFloat(currentYesScale[1]) : 1;
+        yesBtn.style.transform = `scale(${yesScaleValue + 0.1})`;
+    });
+
+    yesBtn.addEventListener('click', function() {
+        // Success state!
+        headerIcon.innerText = "🎉🥂";
+        questionText.innerText = "It's a date! I'll secure the tickets and the popcorn.";
+        buttonGroup.style.display = 'none';
+        responseMessage.innerText = "";
+    });
+</script>
+
+</body>
+</html>
