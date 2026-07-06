@@ -12,25 +12,28 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Cutesy soft pink gradient */
+            background: linear-gradient(120deg, #ffdde1 0%, #ee9ca7 100%);
+            /* Slightly more playful, rounded font stack */
+            font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
         }
         .card {
             background-color: white;
             padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(238, 156, 167, 0.6);
             text-align: center;
             max-width: 90%;
             width: 400px;
+            border: 3px solid #ffb6c1;
         }
         .icon {
             font-size: 70px;
             margin-bottom: 10px;
         }
         h1 {
-            color: #333;
-            font-size: 1.4rem;
+            color: #ff6b81;
+            font-size: 1.5rem;
             margin-bottom: 30px;
             line-height: 1.5;
         }
@@ -39,41 +42,37 @@
             justify-content: center;
             gap: 15px;
             align-items: center;
-            min-height: 50px;
+            min-height: 70px;
         }
         button {
             padding: 12px 30px;
             font-size: 1.1rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.2s ease;
         }
         #yes-btn {
-            background-color: #2eccc1;
+            background-color: #ff6b81;
             color: white;
-            box-shadow: 0 4px 15px rgba(46, 204, 193, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
         }
         #yes-btn:hover {
-            background-color: #25a89e;
+            background-color: #ff4757;
             transform: translateY(-2px);
         }
         #no-btn {
-            background-color: #ff6b6b;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            background-color: #f1f2f6;
+            color: #747d8c;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         #response-message {
             margin-top: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #ff6b6b;
-            min-height: 25px;
-        }
-        .success-text {
-            color: #2eccc1 !important;
-            font-size: 1.3rem !important;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff4757;
+            min-height: 30px;
         }
     </style>
 </head>
@@ -104,25 +103,25 @@
     let noScale = 1;
 
     noBtn.addEventListener('click', function() {
-        // Display the required message and emoji
-        responseMessage.innerText = "😭 Only yes is available at this time";
+        // Display the new cutesy message and blush emoji
+        responseMessage.innerText = "Please click yes to 😳";
         
-        // Make the button slightly smaller each time she clicks 'No'
+        // Shrink the 'No' button
         if (noScale > 0.2) {
             noScale -= 0.2;
             noBtn.style.transform = `scale(${noScale})`;
         }
         
-        // Increase the size of the 'Yes' button slightly to encourage her
+        // Make the 'Yes' button grow
         let currentYesScale = yesBtn.style.transform.match(/scale\(([0-9.]+)\)/);
         let yesScaleValue = currentYesScale ? parseFloat(currentYesScale[1]) : 1;
-        yesBtn.style.transform = `scale(${yesScaleValue + 0.1})`;
+        yesBtn.style.transform = `scale(${yesScaleValue + 0.15})`;
     });
 
     yesBtn.addEventListener('click', function() {
-        // Success state!
-        headerIcon.innerText = "🎉🥂";
-        questionText.innerText = "It's a date! I'll secure the tickets and the popcorn.";
+        // Super cute success state!
+        headerIcon.innerText = "🥰🎉";
+        questionText.innerText = "Yay! It's a date! I'll secure the tickets and the popcorn.";
         buttonGroup.style.display = 'none';
         responseMessage.innerText = "";
     });
